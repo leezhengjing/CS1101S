@@ -1,8 +1,8 @@
-function biggie_function(combo) {
+function biggie_size(combo) {
     return combo <= 4 ? combo + 4 : combo;
 }
 
-function unbiggie_function(combo) {
+function unbiggie_size(combo) {
     return combo >= 5 ? combo - 4 : combo;
 }
 
@@ -11,7 +11,9 @@ function is_biggie_size(combo) {
 }
 
 function combo_price(combo) {
-    return is_biggie_size(combo) ? unbiggie_function(combo) * 1.17  + 0.50:  combo * 1.17;
+    return is_biggie_size(combo) 
+    ? unbiggie_size(combo) * 1.17  + 0.50
+    :  combo * 1.17;
 }
 
 function empty_order() {
