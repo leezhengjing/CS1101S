@@ -18,6 +18,21 @@ function remove_duplicates(lst) {
 
 remove_duplicates(list(1, 2, 3, 4, 4, 3, 2, 1, 2));
 
+// Iterative version of remove_duplicates
+
+function remove_duplicates_1(xs) {
+    function helper(xs, new_xs) {
+        if (is_null(xs)) {
+            return new_xs;
+        } else {
+            // Removing the element that has already been used
+            const filtered = filter(x => !equal(x, head(xs)));
+            return helper(filtered, pair(head(xs), new_xs));
+        }
+    }
+    return helper(xs, null);
+}
+
 // const lst = list(1, 2, 3, 4 ,4 ,3 ,2, 1 ,2);
 // filter(x => !equal(x, head(lst)), tail(lst));
 
@@ -47,6 +62,20 @@ function makeup_amount(x, coins) {
 }
 
 makeup_amount(22, list(1, 10, 5, 20, 1, 5, 1, 50));
+
+// In person studio
+/* Q1 Write a function called remove_duplicates that takes in a list as its only argument and
+returns a list with duplicate elements removed. The order of the elements in the returned
+list does not matter. Use accumulate in your function. */
+
+function remove_duplicates(lst) {
+    return accumulate((x, y) => is_null(member(x, ys))
+                                ? pair(x, y)
+                                : ys,
+                      null,
+                      lst);
+}
+
 
 
 
