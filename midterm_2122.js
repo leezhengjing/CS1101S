@@ -1,13 +1,18 @@
+// Midterms 21_22 Paper
+// Section A
+// Q1
 function repeat(v, k) {
     return k === 0
         ? null
         : pair(v, repeat(v, k - 1));
 }
 
+// Q2
 function expand_list(L, k) {
     return accumulate((x,y) => append(repeat(x, k), y), null, L);
 }
 
+// Q3
 function expand_matrix(M, k) {
     // return accumulate((x,y) => append(repeat(expand_list(x, k), k), y), null, M);
     return expand_list( map(r => expand_list(r, k), M), k );
@@ -22,6 +27,44 @@ display(list( list(1, 1, 1, 2, 2, 2, 3, 3, 3),
               list(4, 4, 4, 5, 5, 5, 6, 6, 6), 
               list(4, 4, 4, 5, 5, 5, 6, 6, 6)));
 
+// Section B: Orders of growth
+// Q4 
+function fun(N) {
+    return N < 1 ? 0 : (N / 2) + fun(N - 1000);
+}
+// Theta(N)
+
+// Q5 
+
+function fun_2(N) {
+    return N < 1 ? 0 : (N * N) + fun(N - 1) + fun(N - 1);
+}
+
+// Theta(2^N)
+
+// Q6
+
+function fun_3(N) {
+    return N <= 1 ? 1: N* fun(N / 4);
+}
+
+// Theta(log N)
+
+// Q7
+
+function fun_4(N) {
+    return N < 1 ? null : pair(enum_list(1, N), fun(N - 1));
+}
+
+// Theta(N^2)
+
+// Q8
+
+function fun_5(N) {
+    return N < 1 ? null : append(enum_list(1, N), fun(N - 1));
+}
+
+// Theta(N^2)
 
 // Section C
 // Q9
