@@ -58,6 +58,76 @@ display(unique_iter(list(1, 1, 1, 2, 3, 3, 4, 4, 5, 6, 6, 6)));
 // Section D
 // Question 11
 
-const as = list(8, 3, 5, 7);
-// 
-// expand_list( map(r => expand_list(r, k), M), k );
+function remove_elem(A, pos) {
+    return p => p < pos? A(p) : A(p + 1);
+}
+
+// Question 12
+
+function zip(A, B) {
+    p => p % 2 === 0
+        ? A(p / 2)
+        : B(math_floor(p / 2));
+}
+
+// Section E
+// Question 13
+
+function distinguishable(i) {
+    return i !== i + 1;
+}
+
+function find(lo, hi) {
+    if (hi - lo <= 1) {
+        return lo;
+    } else {
+        const mid = math_floor((lo + hi)/2)
+        return disposable(math_pow(2, mid))
+            ? find(mid, hi)
+            : find(lo, mid);
+    }
+}
+
+
+// Section F
+// Question 14
+// E
+
+// Question 15
+// B
+
+// Question 16
+// C
+
+// Section G
+// Question 17
+
+function smallest(ston) {
+    return is_pair(head(ston))
+        ? smallest(head(ston))
+        : head(ston);
+}
+
+// Question 18
+
+function largest(ston) {
+    return !is_null(tail(ston))
+        ? largest(tail(ston))
+        : is_pair(ston)
+        ? largest(head(ston))
+        : head(ston);
+}
+
+// Question 19
+
+function find(ston, x) {
+    if (is_null(ston)) {
+        return false;
+    } else if (is_null(tail(ston))) {
+        return is_pair(head(ston)) ? find(head(ston), x) : x === head(ston);
+    } else {
+        return x >= smallest(tail(item))
+            ? find(tail(ston), x)
+            : is_pair(head(ston)) ? find(head(ston), x) : x === head(ston);
+    }
+}
