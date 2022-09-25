@@ -1,3 +1,6 @@
+// Midterm AY1920
+// Question 2: List Processing
+
 function last_comes_first(xs) {
     return is_null(xs) || is_null(tail(xs))
         ? xs
