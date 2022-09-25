@@ -69,4 +69,36 @@ function insertions_mysolution(x, ys){
 
 insertions_mysolution(4, list(1, 2, 3));
 
+// Question 8B
+function permutations_1(xs) {
+    // SOLUTION 1:
+    if (is_null(xs)) {
+        return list(null);
+    } else {
+        const s = permutations_1(tail(xs));
+        const t = map(ys => insertions_3(head(xs), ys), s);
+        return accumulate(append, null, t);
+    }
+}
 
+function permutations_2(xs) {
+    // SOLUTION 2:
+    return accumulate((x, ps) => accumulate((p, qs) => append(insertions(x, p),
+                                                              qs),
+                                             null,
+                                             ps),
+                      list(null),
+                      xs);
+}
+
+function permutations_3(xs) {
+    // SOLUTION 3:
+    return accumulate((x, ps) => accumulate(append,
+                                            null,
+                                            map(p => insertions(x, p), ps)),
+                      list(null),
+                      xs);
+}
+
+
+// permutations_1(list(1, 2));
