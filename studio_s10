@@ -18,21 +18,50 @@ const arr = [1, 2, 3, 4, 5];
 reverse_array(arr);
 arr;
 
-function bubblesort_list(L) {
-    function sort(lst, counter) {
-        if (counter === 0) {
-            return lst;
-        } else if (head(lst) > head(tail(lst))) {
-            let temp = head(lst);
-            set_head(lst, head(tail(lst)));
-            set_head(tail(lst), temp);
+// function bubblesort_list(L) {
+//     function sort(lst, counter) {
+//         if (counter === 0) {
+//             return lst;
+//         } else if (head(lst) > head(tail(lst))) {
+//             let temp = head(lst);
+//             set_head(lst, head(tail(lst)));
+//             set_head(tail(lst), temp);
+//         }
+//         return sort(tail(lst), counter - 1);
+//     }
+//     for (let i = length(L) - 1; i > 0; i = i - 1) {
+//         sort(L, i);
+//     }    
+// }
+
+function bubblesort_array(A) {
+    const len = array_length(A);
+    for (let i = len - 1; i >= 1; i = i - 1) {
+        for (let j = 0; j < i; j = j + 1) {
+            if (A[j] > A[j + 1]) {
+                const temp = A[j];
+                A[j] = A[j + 1];
+                A[j + 1] = temp;
+            }
         }
-        return sort(tail(lst), counter - 1);
     }
-    for (let i = length(L) - 1; i > 0; i = i - 1) {
-        sort(L, i);
-    }    
 }
+
+function bubblesort_list(L) {
+    const len = length(L);
+    for (let i = len - 1; i >= 1; i = i - 1) {
+        let p = L;
+        for (let j = 0; j < i; j = j + 1) {
+            if (head(p) > head(tail(p))) {
+                const temp = head(p);
+                set_head(p, head(tail(p)));
+                set_head(tail(p), temp);
+            }
+        p = tail(p);
+        }
+    }
+}
+
 
 const LL = list(3, 5, 2, 4, 1);
 bubblesort_list(LL);
