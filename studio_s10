@@ -1,0 +1,39 @@
+function swap(A, i, j) {
+    let temp = A[i];
+    A[i] = A[j];
+    A[j] = temp;
+}
+function reverse_array(A) {
+    const len = array_length(A);
+    const half_len = math_floor(len / 2);
+    let i = 0;
+    while (i < half_len) {
+        const j = len - 1 - i;
+        swap(A, i, j);
+        i = i + 1;
+    }
+}
+
+const arr = [1, 2, 3, 4, 5];
+reverse_array(arr);
+arr;
+
+function bubblesort_list(L) {
+    function sort(lst, counter) {
+        if (counter === 0) {
+            return lst;
+        } else if (head(lst) > head(tail(lst))) {
+            let temp = head(lst);
+            set_head(lst, head(tail(lst)));
+            set_head(tail(lst), temp);
+        }
+        return sort(tail(lst), counter - 1);
+    }
+    for (let i = length(L) - 1; i > 0; i = i - 1) {
+        sort(L, i);
+    }    
+}
+
+const LL = list(3, 5, 2, 4, 1);
+bubblesort_list(LL);
+LL;
