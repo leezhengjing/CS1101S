@@ -159,21 +159,37 @@ assert("2A_6", () => build_largest_int([5,5,5,5,5,5,5,5,5,5]),
 function build_2nd_largest_int(digits) {
     // WRITE HERE.
     // ---BEGIN TASK---
-    const S = copy_array(digits);
-    const len = array_length(S);
-    sort_ascending(S);
-    reverse_array(S);
-    let swapped = false;
-    for (let i = len - 1; !swapped && i >= 1; i = i - 1) {
-        if (S[i-1] > S[i]) {
-            swap(S, i - 1, i);
-            swapped = true;
+    const copy = copy_array(digits);
+    sort_ascending(copy);
+    let is_swapped = false;
+    let i = 0;
+    const len = array_length(digits);
+    while (!is_swapped && i < len - 1) {
+        if (copy[i] < copy[i + 1]) {
+            const temp = copy[i];
+            copy[i] = copy[i + 1];
+            copy[i + 1] = temp;
+            is_swapped = true;
         } else {}
+        i = i + 1;
     }
-    return digits_to_string(S);
+    reverse_array(copy);
+    return display(digits_to_string(copy));
+    // ANS KEY ANSWER BELOW
+    // const S = copy_array(digits);
+    // const len = array_length(S);
+    // sort_ascending(S);
+    // reverse_array(S);
+    // let swapped = false;
+    // for (let i = len - 1; !swapped && i >= 1; i = i - 1) {
+    //     if (S[i-1] > S[i]) {
+    //         swap(S, i - 1, i);
+    //         swapped = true;
+    //     } else {}
+    // }
+    // return digits_to_string(S);
     // ---END TASK---
 }
-
 // TASK 2B TESTS
 assert("2B_1", () => build_2nd_largest_int([1]),
     "1", ["build_largest_int"]);
