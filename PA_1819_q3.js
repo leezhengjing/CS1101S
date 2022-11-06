@@ -55,7 +55,41 @@ function assert(test_name, test_func, truth, dependence) {
 function count_lower_neighbors(emap, r, c) {
 
     // WRITE HERE.
+    const nrows = array_length(emap);
+    const ncolumns = array_length(emap[0]);
+    if (r === 0 || r === nrows - 1 || c === 0 || c === ncolumns - 1) {
+        return 0;
+    } else {
+        let count = 0;
+        for (let i = -1; i < 2; i = i + 1) {
+            for (let j = -1; j < 2; j = j + 1) {
+                if (emap[r + i][c + j] < emap[r][c]) {
+                    count = count + 1;
+                } else {}
+            }
+        }
+        return count;
+    }
+    // ANSWER KEY ANS BELOW
+    /*
+    const mRow = array_length(emap); // emap size is mRow x mCol.
+    const mCol = array_length(emap[0]);
 
+    if (r <= 0 || (mRow - 1) <= r || c <= 0 || (mCol - 1) <= c) {
+        return 0;
+    } else {
+        let count = 0;
+        for (let dr = -1; dr <= 1; dr = dr + 1) {
+            for (let dc = -1; dc <= 1; dc = dc + 1) {
+                if (emap[r + dr][c + dc] < emap[r][c]) {
+                    count = count + 1;
+                } else {}
+            }
+        }
+        return count;
+    }
+    */
+    // ---END TASK---
 }
 
 
@@ -83,6 +117,34 @@ assert("3A(I)_8", () => count_lower_neighbors(emapA1, 4, 4), 6, []);
 function count_peaks(emap) {
 
     // WRITE HERE.
+    const nrows = array_length(emap);
+    const ncolumns = array_length(emap[0]);
+    let peak_count = 0;
+    for (let r = 0; r < nrows; r = r + 1) {
+        for (let c = 0; c < ncolumns; c = c + 1) {
+            if (count_lower_neighbors(emap, r, c) === 8) {
+                peak_count = peak_count + 1;
+            }
+        }
+    }
+    return peak_count;
+    // ANS KEY ANS BELOW
+    /*
+    // ---BEGIN TASK---
+    const mRow = array_length(emap); // emap size is mRow x mCol.
+    const mCol = array_length(emap[0]);
+
+    let count = 0;
+    for (let r = 0; r < mRow; r = r + 1) {
+        for (let c = 0; c < mCol; c = c + 1) {
+            if (count_lower_neighbors(emap, r, c) === 8) {
+                count = count + 1;
+            } else {}
+        }
+    }
+    return count;
+    */
+    // ---END TASK---
 
 }
 
