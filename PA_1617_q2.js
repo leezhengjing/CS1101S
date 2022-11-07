@@ -82,9 +82,16 @@ function is_valid_toto_set(nums, n, min, max) {
 function num_of_matches(numsA, numsB) {
 
     // WRITE HERE.
-
+    // loop through one of the lists, check if member in the other list
+    return length(filter(x=> (!is_null(member(x, numsB))), numsA));
 }
-
+// ANS KEY ANS
+// function num_of_matches(numsA, numsB) {
+//     // WRITE HERE.
+//     return accumulate(
+//               (a, b) => b + (is_null(member(a, numsB)) ? 0 : 1),
+//               0, numsA);
+// }
 
 
 ////////////////////////////////////////////////////////////
@@ -94,8 +101,44 @@ function num_of_matches(numsA, numsB) {
 function check_winning_group(bet_nums, draw_nums, extra_num) {
 
     // WRITE HERE.
+    const n = length(draw_nums);
+    const nmatches = num_of_matches(bet_nums, draw_nums);
+    if (nmatches === n) {
+        return 1;
+    } else if (nmatches === (n - 1)) {
+        return !is_null(member(extra_num, bet_nums))
+            ? 2
+            : 3;
+    } else if (nmatches === (n - 2)) {
+        return !is_null(member(extra_num, bet_nums))
+            ? 4
+            : 5;
+    } else {
+        return 0;
+    }
 
 }
+
+// ANS KEY ANS BELOW
+// function check_winning_group(bet_nums, draw_nums, extra_num) {
+//     // WRITE HERE.
+//     const num_matches = num_of_matches(bet_nums, draw_nums);
+//     const match_extra_num = !is_null(member(extra_num, bet_nums));
+//     const n = length(draw_nums);
+//     if (num_matches === n) {
+//         return 1;
+//     } else if (num_matches === (n - 1) && match_extra_num) {
+//         return 2;
+//     } else if (num_matches === n - 1) {
+//         return 3;
+//     } else if (num_matches === (n - 2) && match_extra_num) {
+//         return 4;
+//     } else if (num_matches === n - 2) {
+//         return 5;
+//     } else {
+//         return 0;
+//     }
+// }
 
 
 
