@@ -28,15 +28,15 @@ function all_different(nums) {
 }
 
 // ANS KEY ANS
-function all_different(nums) {
-    // WRITE HERE.
-    if (is_null(nums)) {
-        return true;
-    } else {
-        const head_is_unique = is_null(member(head(nums), tail(nums)));
-        return head_is_unique && all_different(tail(nums));
-    }
-}
+// function all_different(nums) {
+//     // WRITE HERE.
+//     if (is_null(nums)) {
+//         return true;
+//     } else {
+//         const head_is_unique = is_null(member(head(nums), tail(nums)));
+//         return head_is_unique && all_different(tail(nums));
+//     }
+// }
 
 
 ////////////////////////////////////////////////////////////
@@ -46,8 +46,32 @@ function all_different(nums) {
 function is_valid_toto_set(nums, n, min, max) {
 
     // WRITE HERE.
+    const len = length(nums);
+    if (len !== n || !all_different(nums)) {
+        return false;
+    } else {
+        return is_null(nums)
+            ? true
+            : (head(nums) >= min && head(nums) <= max)
+                ? is_valid_toto_set(tail(nums), n - 1, min, max)
+                : false;
+    }
 
 }
+// ANS KEY
+// function is_valid_toto_set(nums, n, min, max) {
+//     // WRITE HERE.
+//     if (length(nums) !== n) {
+//         return false;
+//     } else {
+//         // check that all numbers are within [min, max].
+//         const within_min_max = accumulate(
+//                                  (a, b) => (a >= min && a <= max) && b,
+//                                  true, nums);
+//         return (within_min_max && all_different(nums));
+//     }
+// }
+
 
 
 
