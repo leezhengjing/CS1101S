@@ -30,6 +30,9 @@ function is_nucleobase(s) {
 function is_dna_strand(xs) {
 
     // WRITE HERE.
+    return is_null(xs)
+        ? true
+        : is_nucleobase(head(xs)) && is_dna_strand(tail(xs));
 
 }
 
@@ -42,6 +45,7 @@ function is_dna_strand(xs) {
 function combine(xss) {
 
     // WRITE HERE.
+    return accumulate(append, null, xss);
 
 }
 
