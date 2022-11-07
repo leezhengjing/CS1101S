@@ -84,6 +84,32 @@ function find_gene_start(xs) {
 
 }
 
+// ANS KEY ANS BELOW
+// function find_gene_start(xs) {
+//     // WRITE HERE.
+//     function at_least_length(ys, n) {
+//         if (n === 0) {
+//             return true;
+//         } else if (is_null(ys)) {
+//             return false;
+//         } else {
+//             return at_least_length(tail(ys), n - 1);
+//         }
+//     }
+//     if (at_least_length(xs, 3)) {
+//         if (head(xs) === "A" &&
+//             head(tail(xs)) === "T" &&
+//             head(tail(tail(xs))) === "G") {
+//             return list(tail(tail(tail(xs))));
+//         } else {
+//             return find_gene_start(tail(xs));
+//         }
+//     } else {
+//         return null;
+//     }
+// }
+
+
 
 
 ////////////////////////////////////////////////////////////
@@ -91,10 +117,70 @@ function find_gene_start(xs) {
 ////////////////////////////////////////////////////////////
 
 function find_gene_end(xs) {
-
     // WRITE HERE.
-
+    // checker function must check for "TAG", "TAA" and "TGA" before recursively
+    // calling find_gene_end and updates accum
+    function checker(ys, stop_codon) {
+        if (head(ys) === head(stop_codon) &&
+            head(tail(ys)) === head(tail(stop_codon)) &&
+            head(tail(tail(ys))) === head(tail(tail(stop_codon)))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function find_end(ys, accum) {
+        if (is_null(ys) || is_null(tail(ys)) || is_null(tail(tail(ys)))) {
+            return null;
+        } else if (checker(ys, list("T", "A", "G")) || 
+                   checker(ys, list("T", "A", "A")) ||
+                   checker(ys , list("T", "G", "A"))) {
+            return list(reverse(accum));
+        } else {
+            return find_end(tail(ys), pair(head(ys), accum));
+        }
+    }
+    return find_end(xs, null);
 }
+
+// // Ans key ans below
+// function find_gene_end(xs) {
+//     // WRITE HERE.
+//     function at_least_length(ys, n) {
+//         if (n === 0) {
+//             return true;
+//         } else if (is_null(ys)) {
+//             return false;
+//         } else {
+//             return at_least_length(tail(ys), n - 1);
+//         }
+//     }
+//     function is_prefix(ys, zs) {
+//         if (is_null(ys)) {
+//             return true;
+//         } else if (is_null(zs)) {
+//             return false;
+//         } else if (head(ys) === head(zs)) {
+//             return is_prefix(tail(ys), tail(zs));
+//         } else {
+//             return false;
+//         }
+//     }
+//     function find_end(ws, acc) {
+//         if (at_least_length(ws, 3)) {
+//             if (is_prefix(list("T", "A", "G"), ws) ||
+//                 is_prefix(list("T", "A", "A"), ws) ||
+//                 is_prefix(list("T", "G", "A"), ws)) {
+//                 return list(reverse(acc));
+//             } else {
+//                 return find_end(tail(ws), pair(head(ws), acc));
+//             }
+//         } else {
+//              return null;
+//         }
+//     }
+//     return find_end(xs, null);
+// }
 
 
 
