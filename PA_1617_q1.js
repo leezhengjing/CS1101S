@@ -191,6 +191,18 @@ function find_gene_end(xs) {
 function all_genes(xs) {
 
     // WRITE HERE.
+    // ANS KEY ANS BELOW
+    const start = find_gene_start(xs);
+    if (is_null(start)) {
+        return null;
+    } else {
+        const end = find_gene_end(head(start));
+        if (is_null(end)) {
+            return null;
+        } else {
+            return pair(head(end), all_genes(head(start)));
+        }
+    }
 
 }
 
