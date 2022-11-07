@@ -13,9 +13,30 @@
 function all_different(nums) {
 
     // WRITE HERE.
-
+    function checker(x, ys) {
+        if (is_null(ys)) {
+            return true;
+        } else {
+            return (x === head(ys))
+                ? false
+                : checker(x, tail(ys));
+        }
+    }
+    return is_null(nums)
+        ? true
+        : checker(head(nums), tail(nums)) && all_different(tail(nums));
 }
 
+// ANS KEY ANS
+function all_different(nums) {
+    // WRITE HERE.
+    if (is_null(nums)) {
+        return true;
+    } else {
+        const head_is_unique = is_null(member(head(nums), tail(nums)));
+        return head_is_unique && all_different(tail(nums));
+    }
+}
 
 
 ////////////////////////////////////////////////////////////
