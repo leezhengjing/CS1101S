@@ -13,6 +13,11 @@
 function is_nucleobase(s) {
 
     // WRITE HERE.
+    if (s === "A" || s === "C" || s === "G" || s === "T") {
+        return true;
+    } else {
+        return false;
+    }
 
 }
 
