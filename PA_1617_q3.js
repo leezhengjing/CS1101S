@@ -60,10 +60,28 @@ function evaluate_BAE_tree(bae_tree) {
 // Question 3B
 ////////////////////////////////////////////////////////////
 
+// COULDNT DO, ANS KEY ANS
 function build_BAE_tree(bae_list) {
-
     // WRITE HERE.
+    let next_token = bae_list;
 
+    function build_tree() {
+        if (equal(head(next_token), "(")) {
+            next_token = tail(next_token);
+            const left_tree = build_tree();
+            const op = head(next_token);
+            next_token = tail(next_token);
+            const right_tree = build_tree();
+            next_token = tail(next_token); // skip over ")"
+            return list(left_tree, op, right_tree);
+        } else { // token is a number
+            const token = head(next_token);
+            next_token = tail(next_token);
+            return token;
+        }
+    }
+
+    return build_tree();
 }
 
 
@@ -75,6 +93,7 @@ function build_BAE_tree(bae_list) {
 function evaluate_BAE(bae_list) {
 
     // WRITE HERE.
+    return evaluate_BAE_tree(build_BAE_tree(bae_list));
 
 }
 
@@ -87,9 +106,41 @@ function evaluate_BAE(bae_list) {
 function check_parentheses(paren_list) {
 
     // WRITE HERE.
-
+    function helper(paren_list, counter) {
+        if (counter < 0) {
+            return false;
+        } else if (is_null(paren_list)) {
+            return counter === 0;
+        } else {
+            if (equal(head(paren_list), "(")) {
+                return helper(tail(paren_list), counter + 1);
+            } else {
+                return helper(tail(paren_list), display(counter - 1));
+            }
+        }
+    }
+    return helper(paren_list, 0);
+    // if first bracket is ) , 
 }
 
+// Ans Key Here
+// function check_parentheses(paren_list) {
+//     // WRITE HERE.
+
+//     function check(count, xs) {
+//         if (is_null(xs)) {
+//             return (count === 0);
+//         } else if (count < 0) {
+//             return false;
+//         } else if (head(xs) === "(") {
+//             return check(count + 1, tail(xs));
+//         } else { // (head(xs) === ")")
+//             return check(count - 1, tail(xs));
+//         }
+//     }
+
+//     return check(0, paren_list);
+// }
 
 
 ////////////////////////////////////////////////////////////
