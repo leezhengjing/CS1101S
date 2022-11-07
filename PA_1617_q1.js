@@ -58,6 +58,7 @@ function combine(xss) {
 function oxoguanine_repair(xs) {
 
     // WRITE HERE.
+    return map(x=> (x === "8") ? "G" : x, xs);
 
 }
 
@@ -70,6 +71,16 @@ function oxoguanine_repair(xs) {
 function find_gene_start(xs) {
 
     // WRITE HERE.
+    if (is_null(xs) || is_null(tail(xs)) || is_null(tail(tail(xs)))) {
+        return null;
+    } else if (head(xs) === "A" && head(tail(xs)) === "T" && head(tail(tail(xs))) === "G") {
+        return is_undefined(tail(tail(tail(xs))))
+            ? list(null)
+            : list(tail(tail(tail(xs))));
+    } else {
+        return find_gene_start(tail(xs));
+    }
+    
 
 }
 
