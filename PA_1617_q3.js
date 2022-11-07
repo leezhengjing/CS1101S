@@ -13,8 +13,46 @@
 function evaluate_BAE_tree(bae_tree) {
 
     // WRITE HERE.
+    if (!is_list(bae_tree)) {
+        return bae_tree;
+    } else {
+        const left = evaluate_BAE_tree(head(bae_tree));
+        const op = head(tail(bae_tree));
+        const right = evaluate_BAE_tree(head(tail(tail(bae_tree))));
+        if (op === "+") {
+            return left + right;
+        } else if (op === "-") {
+            return left - right;
+        } else if (op === "*") {
+            return left * right;
+        } else {
+            return left / right;
+        }
+    }
+    
 
 }
+// ANS KEY ANS BELOW
+
+// function evaluate_BAE_tree(bae_tree) {
+//     // WRITE HERE.
+//     if (is_list(bae_tree)) {
+//         const left = evaluate_BAE_tree(head(bae_tree));
+//         const right = evaluate_BAE_tree(head(tail(tail(bae_tree))));
+//         const op = head(tail(bae_tree));
+//         if (op === "+") {
+//             return left + right;
+//         } else if (op === "-") {
+//             return left - right;
+//         } else if (op === "*") {
+//             return left * right;
+//         } else { // (op === "/")
+//             return left / right;
+//         }
+//     } else { // is a number
+//         return bae_tree;
+//     }
+// }
 
 
 
