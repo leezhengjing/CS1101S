@@ -143,6 +143,8 @@ function test_coordinates_list(grid, coordinates_list) {
 }
 
 // task 6H
+function make_sudoku_coordinates_list_list() {
+}
 function test_sudoku(grid) {
     const checklist = make_sudoku_coordinates_list_list();
     return accumulate(
