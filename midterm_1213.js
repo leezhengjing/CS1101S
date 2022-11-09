@@ -59,3 +59,29 @@ compose1(square, add_one)(7);
 
 // Task 3B
 compose2(square, add_one(7));
+
+// Task 4A
+function list_to_tsil(xs) {
+    return is_null(xs)
+        ? null
+        : pair(list_to_tsil(tail(xs)), head(xs));
+}
+
+// Task 5A
+
+// function sum_of_list(xs) {
+//     if (is_null(xs)) {
+//         return 0;
+//     } else {
+//         return head(xs) + sum_of_list(tail(xs));
+//     }
+// }
+
+function sum_of_list(xs) {
+    function helper(xs, accum) {
+        return is_null(xs)
+            ? accum
+            : helper(tail(xs), head(xs) + accum);
+    }
+    return helper(xs, accum);
+}
