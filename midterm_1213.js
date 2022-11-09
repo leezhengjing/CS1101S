@@ -38,3 +38,24 @@ function simple_conditional(a, b, c) {
 const diff = a => b => b - a;
 
 // Task 3
+
+function square(x) {
+    return x * x;
+}
+
+function add_one(x) {
+    return x + 1;
+}
+
+function compose1(f, g) {
+    return x => f(g(x));
+}
+
+function compose2(f, g) {
+    return f(g);
+}
+
+compose1(square, add_one)(7);
+
+// Task 3B
+compose2(square, add_one(7));
