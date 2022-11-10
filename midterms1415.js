@@ -8,3 +8,5 @@
 // 1C 
 // cond_a ? (cond_b ? do_x() : do_y())
 //        : do_y() 
+
+// Question 2: Almost malfunction 
