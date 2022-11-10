@@ -123,13 +123,26 @@ function attack_diagonally(qs) {
 // Order of growth theta n^2
 
 // 7E
-function permutations(xs) {
-    
+function permutations(ys) {
+    return is_null(ys)
+        ? list(null)
+        : accumulate(append, null,
+            map(x => map(p => pair(x, p),
+                         permutations(remove(x, ys))),
+                ys));
 }
+
 function queens(n) {
-    const permutations_list = permutations(map(x => make_queen(1, x), enum_list(1, n)));
-    return permutations_list;
+    const ordered = enum_list(1, n);
+    const permutations_list = permutations(ordered);
+    return map(perm => zip(make_queen, ordered, perm), permutations_list);
 }
 
-
+display_list(queens(3));
 // Order of growth is q * n
+
+// Task 7F
+function solutions(n) {
+    const queens_list = queens(n);
+    return filter(qs => !attack_diagonally(qs), queens_list);
+}
